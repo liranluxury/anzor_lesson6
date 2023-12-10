@@ -209,8 +209,19 @@ console.log(mergeObjects(obj1, obj2));
 const inputObj = { a: 1, b: 2, c: 3, d: 4 };
 const propertiesToKeep = ["a", "c"];
 function splitObject(obj, arr) {
-  const arrNew = [];
+  const objIncluded = {};
+  const objExcluded = {};
+  for (let key in obj) {
+    if (arr.includes(key)) {
+      objIncluded[key] = obj[key];
+    } else {
+      objExcluded[key] = obj[key];
+    }
+  }
+  return [objIncluded, objExcluded];
 }
+const res = splitObject(inputObj, propertiesToKeep);
+console.log(res); //не сама решила
 
 // splitObject(inputObj, propertiesToKeep);
 // Ожидаемый результат: [{ a: 1, c: 3 }, { b: 2, d: 4 }]
